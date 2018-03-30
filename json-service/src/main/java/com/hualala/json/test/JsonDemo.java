@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.hualala.json.bean.PrewarningReceiver;
 import com.hualala.json.bean.User;
 import com.hualala.json.util.DataUtil;
+import com.hualala.json.util.Utils;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -88,5 +89,19 @@ public class JsonDemo {
 
         String jsonStr = JSONObject.toJSONString(userList);
         System.out.println(jsonStr);
+    }
+
+    @Test
+    public void jsonToBean3() throws Exception {
+        String jsonStr = "[{\"name\":\"张三\",\"age\":10,\"cardID\":412822198908101179,\"addr\":\"河南.驻马店\"},{\"name\":\"李四\",\"age\":12,\"cardID\":412822198908101171,\"addr\":\"河南.南阳\"}]";
+        List<User> userList = (List<User>) Utils.transformJsonToBeanList(jsonStr, User.class);
+        System.out.println(userList);
+    }
+
+    @Test
+    public void jsonToBean4() throws Exception {
+        String jsonStr = "[{\"accountID\":\"137452\",\"groupID\":\"119\",\"itemID\":\"137452\",\"itemName\":\"胡哲\",\"loginName\":\"gogo-huzhe\",\"shopID\":\"76022913\",\"shopName\":\"1万万饭庄(房山分店)aaa\",\"userEmail\":\"huzhe@hualala.com\",\"userMobile\":\"18001214950\",\"userName\":\"胡哲\",\"weixin\":\"已开启\",\"weixinMessageAllowed\":\"1\",\"wxMsgMpID\":\"0A2A-6A0Uf502bc\",\"wxMsgOpenID\":\"oaKph0kBHDutwvy-ApACWYrhUXok\"},{\"accountID\":\"137452\",\"groupID\":\"119\",\"itemID\":\"137452\",\"itemName\":\"胡哲\",\"loginName\":\"gogo-huzhe\",\"shopID\":\"76056926\",\"shopName\":\"组织创建门店\",\"userEmail\":\"huzhe@hualala.com\",\"userMobile\":\"18001214950\",\"userName\":\"胡哲\",\"weixin\":\"已开启\",\"weixinMessageAllowed\":\"1\",\"wxMsgMpID\":\"0A2A-6A0Uf502bc\",\"wxMsgOpenID\":\"oaKph0kBHDutwvy-ApACWYrhUXok\"}]";
+        List<PrewarningReceiver> receiverList = (List<PrewarningReceiver>) Utils.transformJsonToBeanList(jsonStr, PrewarningReceiver.class);
+        System.out.println(receiverList);
     }
 }

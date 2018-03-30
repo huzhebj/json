@@ -124,7 +124,7 @@ public class DataUtil {
     public static  <T> List<T> parseJsonToBeanList(String jsonStr, Class<T> clazz) throws Exception {
         List<T> list = null; //包含的实体列表
         list = new ArrayList<T>();
-        JSONArray jArray = new org.json.JSONArray(jsonStr);
+        JSONArray jArray = new JSONArray(jsonStr);
         for (int i = 0; i < jArray.length(); i++) {
             JSONObject jso = (JSONObject) jArray.opt(i);
             Field[] fs = clazz.getDeclaredFields();
