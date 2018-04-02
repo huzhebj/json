@@ -1,10 +1,7 @@
 package com.hualala.json.test;
 
 import com.alibaba.fastjson.JSONObject;
-import com.hualala.json.bean.AssessmentCategory;
-import com.hualala.json.bean.AssessmentTag;
-import com.hualala.json.bean.PrewarningReceiver;
-import com.hualala.json.bean.User;
+import com.hualala.json.bean.*;
 import com.hualala.json.util.DataUtil;
 import com.hualala.json.util.Utils;
 import org.junit.Test;
@@ -124,15 +121,15 @@ public class JsonDemo {
         List<AssessmentTag> assessmentTagList1 = new ArrayList<>();
         AssessmentTag assessmentTag11 = new AssessmentTag();
         assessmentTag11.setItemID("1108");
-        assessmentTag11.setItemID("口味偏淡");
+        assessmentTag11.setTagName("口味偏淡");
         assessmentTagList1.add(assessmentTag11);
         AssessmentTag assessmentTag12 = new AssessmentTag();
         assessmentTag12.setItemID("2131");
-        assessmentTag12.setItemID("口味偏重");
+        assessmentTag12.setTagName("口味偏重");
         assessmentTagList1.add(assessmentTag12);
         AssessmentTag assessmentTag13 = new AssessmentTag();
         assessmentTag13.setItemID("3154");
-        assessmentTag13.setItemID("菜品新鲜");
+        assessmentTag13.setTagName("菜品新鲜");
         assessmentTagList1.add(assessmentTag13);
         assessmentCategory1.setAssessmentTagList(assessmentTagList1);
         assessmentCategoryList.add(assessmentCategory1);
@@ -143,15 +140,15 @@ public class JsonDemo {
         List<AssessmentTag> assessmentTagList2 = new ArrayList<>();
         AssessmentTag assessmentTag21 = new AssessmentTag();
         assessmentTag21.setItemID("8269");
-        assessmentTag21.setItemID("干净卫生");
+        assessmentTag21.setTagName("干净卫生");
         assessmentTagList2.add(assessmentTag21);
         AssessmentTag assessmentTag22 = new AssessmentTag();
         assessmentTag22.setItemID("9292");
-        assessmentTag22.setItemID("装修有格调");
+        assessmentTag22.setTagName("装修有格调");
         assessmentTagList2.add(assessmentTag22);
         AssessmentTag assessmentTag23 = new AssessmentTag();
         assessmentTag23.setItemID("10315");
-        assessmentTag23.setItemID("停车方便");
+        assessmentTag23.setTagName("停车方便");
         assessmentTagList2.add(assessmentTag23);
         assessmentCategory2.setAssessmentTagList(assessmentTagList2);
         assessmentCategoryList.add(assessmentCategory2);
@@ -160,11 +157,44 @@ public class JsonDemo {
         System.out.println(jsonStr);
     }
 
-    /*报错，不支持属性值不是以{开头的*/
     @Test
     public void jsonToBean6() throws Exception {
-        String jsonStr = "[{\"assessmentCategoryID\":\"85\",\"assessmentTagList\":[{\"itemID\":\"口味偏淡\"},{\"itemID\":\"口味偏重\"},{\"itemID\":\"菜品新鲜\"}],\"categoryName\":\"口味\"},{\"assessmentCategoryID\":\"1108\",\"assessmentTagList\":[{\"itemID\":\"干净卫生\"},{\"itemID\":\"装修有格调\"},{\"itemID\":\"停车方便\"}],\"categoryName\":\"环境\"}]";
-        List<AssessmentCategory> assessmentCategoryList = (List<AssessmentCategory>) Utils.transformJsonToBean(jsonStr, AssessmentCategory.class);
+        String jsonStr = "[{\"assessmentCategoryID\":\"85\",\"assessmentTagList\":[{\"itemID\":\"1108\",\"tagName\":\"口味偏淡\"},{\"itemID\":\"2131\",\"tagName\":\"口味偏重\"},{\"itemID\":\"3154\",\"tagName\":\"菜品新鲜\"}],\"categoryName\":\"口味\"},{\"assessmentCategoryID\":\"1108\",\"assessmentTagList\":[{\"itemID\":\"8269\",\"tagName\":\"干净卫生\"},{\"itemID\":\"9292\",\"tagName\":\"装修有格调\"},{\"itemID\":\"10315\",\"tagName\":\"停车方便\"}],\"categoryName\":\"环境\"}]";
+        List<AssessmentCategory> assessmentCategoryList = (List<AssessmentCategory>) Utils.transformJsonToBeanList(jsonStr, AssessmentCategory.class);
         System.out.println(assessmentCategoryList);
+    }
+
+    @Test
+    public void beanToJson7() throws Exception {
+        ArrayList<Student> studentList = new ArrayList<>();
+        Student student1 = new Student();
+        student1.setId("001");
+        User user1 = new User();
+        user1.setName("张三");
+        user1.setAge(10);
+        user1.setCardID(412822198908101179L);
+        user1.setAddr("河南.驻马店");
+        student1.setUser(user1);
+        studentList.add(student1);
+        
+        Student student2 = new Student();
+        student2.setId("002");
+        User user2 = new User();
+        user2.setName("李四");
+        user2.setAge(12);
+        user2.setCardID(412822198908101171L);
+        user2.setAddr("河南.南阳");
+        student2.setUser(user2);
+        studentList.add(student2);
+
+        String jsonStr = JSONObject.toJSONString(studentList);
+        System.out.println(jsonStr);
+    }
+
+    @Test
+    public void jsonToBean8() throws Exception {
+        String jsonStr = "[{\"id\":\"001\",\"user\":{\"addr\":\"河南.驻马店\",\"age\":10,\"cardID\":412822198908101179,\"name\":\"张三\"}},{\"id\":\"002\",\"user\":{\"addr\":\"河南.南阳\",\"age\":12,\"cardID\":412822198908101171,\"name\":\"李四\"}}]";
+        List<Student> studentList = (List<Student>) Utils.transformJsonToBeanList(jsonStr, Student.class);
+        System.out.println(studentList);
     }
 }
