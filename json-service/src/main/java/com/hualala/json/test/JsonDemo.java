@@ -1,6 +1,8 @@
 package com.hualala.json.test;
 
 import com.alibaba.fastjson.JSONObject;
+import com.hualala.json.bean.AssessmentCategory;
+import com.hualala.json.bean.AssessmentTag;
 import com.hualala.json.bean.PrewarningReceiver;
 import com.hualala.json.bean.User;
 import com.hualala.json.util.DataUtil;
@@ -110,5 +112,59 @@ public class JsonDemo {
         String jsonStr = "{\"accountID\":\"137452\",\"groupID\":\"119\",\"itemID\":\"137452\",\"itemName\":\"胡哲\",\"loginName\":\"gogo-huzhe\",\"shopID\":\"76056926\",\"shopName\":\"组织创建门店\",\"userEmail\":\"huzhe@hualala.com\",\"userMobile\":\"18001214950\",\"userName\":\"胡哲\",\"weixin\":\"已开启\",\"weixinMessageAllowed\":\"1\",\"wxMsgMpID\":\"0A2A-6A0Uf502bc\",\"wxMsgOpenID\":\"oaKph0kBHDutwvy-ApACWYrhUXok\"}";
         PrewarningReceiver prewarningReceiver = (PrewarningReceiver) Utils.transformJsonToBean(jsonStr, PrewarningReceiver.class);
         System.out.println(prewarningReceiver);
+    }
+
+    @Test
+    public void beanToJson6() throws Exception {
+        List<AssessmentCategory> assessmentCategoryList = new ArrayList<>();
+        
+        AssessmentCategory assessmentCategory1 = new AssessmentCategory();
+        assessmentCategory1.setAssessmentCategoryID("85");
+        assessmentCategory1.setCategoryName("口味");
+        List<AssessmentTag> assessmentTagList1 = new ArrayList<>();
+        AssessmentTag assessmentTag11 = new AssessmentTag();
+        assessmentTag11.setItemID("1108");
+        assessmentTag11.setItemID("口味偏淡");
+        assessmentTagList1.add(assessmentTag11);
+        AssessmentTag assessmentTag12 = new AssessmentTag();
+        assessmentTag12.setItemID("2131");
+        assessmentTag12.setItemID("口味偏重");
+        assessmentTagList1.add(assessmentTag12);
+        AssessmentTag assessmentTag13 = new AssessmentTag();
+        assessmentTag13.setItemID("3154");
+        assessmentTag13.setItemID("菜品新鲜");
+        assessmentTagList1.add(assessmentTag13);
+        assessmentCategory1.setAssessmentTagList(assessmentTagList1);
+        assessmentCategoryList.add(assessmentCategory1);
+        
+        AssessmentCategory assessmentCategory2 = new AssessmentCategory();
+        assessmentCategory2.setAssessmentCategoryID("1108");
+        assessmentCategory2.setCategoryName("环境");
+        List<AssessmentTag> assessmentTagList2 = new ArrayList<>();
+        AssessmentTag assessmentTag21 = new AssessmentTag();
+        assessmentTag21.setItemID("8269");
+        assessmentTag21.setItemID("干净卫生");
+        assessmentTagList2.add(assessmentTag21);
+        AssessmentTag assessmentTag22 = new AssessmentTag();
+        assessmentTag22.setItemID("9292");
+        assessmentTag22.setItemID("装修有格调");
+        assessmentTagList2.add(assessmentTag22);
+        AssessmentTag assessmentTag23 = new AssessmentTag();
+        assessmentTag23.setItemID("10315");
+        assessmentTag23.setItemID("停车方便");
+        assessmentTagList2.add(assessmentTag23);
+        assessmentCategory2.setAssessmentTagList(assessmentTagList2);
+        assessmentCategoryList.add(assessmentCategory2);
+
+        String jsonStr = JSONObject.toJSONString(assessmentCategoryList);
+        System.out.println(jsonStr);
+    }
+
+    /*报错，不支持属性值不是以{开头的*/
+    @Test
+    public void jsonToBean6() throws Exception {
+        String jsonStr = "[{\"assessmentCategoryID\":\"85\",\"assessmentTagList\":[{\"itemID\":\"口味偏淡\"},{\"itemID\":\"口味偏重\"},{\"itemID\":\"菜品新鲜\"}],\"categoryName\":\"口味\"},{\"assessmentCategoryID\":\"1108\",\"assessmentTagList\":[{\"itemID\":\"干净卫生\"},{\"itemID\":\"装修有格调\"},{\"itemID\":\"停车方便\"}],\"categoryName\":\"环境\"}]";
+        List<AssessmentCategory> assessmentCategoryList = (List<AssessmentCategory>) Utils.transformJsonToBean(jsonStr, AssessmentCategory.class);
+        System.out.println(assessmentCategoryList);
     }
 }
