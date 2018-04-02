@@ -11,6 +11,7 @@ public class Utils {
         return JSONObject.toBean(jsonObject, type);
     }
 
+    //此方法比DataUtil.parseJsonToBeanList方法优
     public static <T> Object transformJsonToBeanList(String jsonArr,Class<T> type) {
         JSONArray jsonArray = JSONArray.fromObject(jsonArr);
         return JSONArray.toCollection(jsonArray, type);

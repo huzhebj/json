@@ -121,6 +121,7 @@ public class DataUtil {
         return list;
     }
 
+    //此方法非最优
     public static  <T> List<T> parseJsonToBeanList(String jsonStr, Class<T> clazz) throws Exception {
         List<T> list = null; //包含的实体列表
         list = new ArrayList<T>();
