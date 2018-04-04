@@ -91,28 +91,28 @@ public class JsonDemo {
     }
 
     @Test
-    public void jsonToBean3() throws Exception {
+    public void jsonToBean3(){
         String jsonStr = "[{\"name\":\"张三\",\"age\":10,\"cardID\":412822198908101179,\"addr\":\"河南.驻马店\"},{\"name\":\"李四\",\"age\":12,\"cardID\":412822198908101171,\"addr\":\"河南.南阳\"}]";
         List<User> userList = (List<User>) Utils.transformJsonToBeanList(jsonStr, User.class);
         System.out.println(userList);
     }
 
     @Test
-    public void jsonToBean4() throws Exception {
+    public void jsonToBean4(){
         String jsonStr = "[{\"accountID\":\"137452\",\"groupID\":\"119\",\"itemID\":\"137452\",\"itemName\":\"胡哲\",\"loginName\":\"gogo-huzhe\",\"shopID\":\"76022913\",\"shopName\":\"1万万饭庄(房山分店)aaa\",\"userEmail\":\"huzhe@hualala.com\",\"userMobile\":\"18001214950\",\"userName\":\"胡哲\",\"weixin\":\"已开启\",\"weixinMessageAllowed\":\"1\",\"wxMsgMpID\":\"0A2A-6A0Uf502bc\",\"wxMsgOpenID\":\"oaKph0kBHDutwvy-ApACWYrhUXok\"},{\"accountID\":\"137452\",\"groupID\":\"119\",\"itemID\":\"137452\",\"itemName\":\"胡哲\",\"loginName\":\"gogo-huzhe\",\"shopID\":\"76056926\",\"shopName\":\"组织创建门店\",\"userEmail\":\"huzhe@hualala.com\",\"userMobile\":\"18001214950\",\"userName\":\"胡哲\",\"weixin\":\"已开启\",\"weixinMessageAllowed\":\"1\",\"wxMsgMpID\":\"0A2A-6A0Uf502bc\",\"wxMsgOpenID\":\"oaKph0kBHDutwvy-ApACWYrhUXok\"}]";
         List<PrewarningReceiver> receiverList = (List<PrewarningReceiver>) Utils.transformJsonToBeanList(jsonStr, PrewarningReceiver.class);
         System.out.println(receiverList);
     }
 
     @Test
-    public void jsonToBean5() throws Exception {
+    public void jsonToBean5(){
         String jsonStr = "{\"accountID\":\"137452\",\"groupID\":\"119\",\"itemID\":\"137452\",\"itemName\":\"胡哲\",\"loginName\":\"gogo-huzhe\",\"shopID\":\"76056926\",\"shopName\":\"组织创建门店\",\"userEmail\":\"huzhe@hualala.com\",\"userMobile\":\"18001214950\",\"userName\":\"胡哲\",\"weixin\":\"已开启\",\"weixinMessageAllowed\":\"1\",\"wxMsgMpID\":\"0A2A-6A0Uf502bc\",\"wxMsgOpenID\":\"oaKph0kBHDutwvy-ApACWYrhUXok\"}";
         PrewarningReceiver prewarningReceiver = (PrewarningReceiver) Utils.transformJsonToBean(jsonStr, PrewarningReceiver.class);
         System.out.println(prewarningReceiver);
     }
 
     @Test
-    public void beanToJson6() throws Exception {
+    public void beanToJson6(){
         List<AssessmentCategory> assessmentCategoryList = new ArrayList<>();
         
         AssessmentCategory assessmentCategory1 = new AssessmentCategory();
@@ -157,15 +157,16 @@ public class JsonDemo {
         System.out.println(jsonStr);
     }
 
+    //此种情况有待研究
     @Test
-    public void jsonToBean6() throws Exception {
+    public void jsonToBean6(){
         String jsonStr = "[{\"assessmentCategoryID\":\"85\",\"assessmentTagList\":[{\"itemID\":\"1108\",\"tagName\":\"口味偏淡\"},{\"itemID\":\"2131\",\"tagName\":\"口味偏重\"},{\"itemID\":\"3154\",\"tagName\":\"菜品新鲜\"}],\"categoryName\":\"口味\"},{\"assessmentCategoryID\":\"1108\",\"assessmentTagList\":[{\"itemID\":\"8269\",\"tagName\":\"干净卫生\"},{\"itemID\":\"9292\",\"tagName\":\"装修有格调\"},{\"itemID\":\"10315\",\"tagName\":\"停车方便\"}],\"categoryName\":\"环境\"}]";
         List<AssessmentCategory> assessmentCategoryList = (List<AssessmentCategory>) Utils.transformJsonToBeanList(jsonStr, AssessmentCategory.class);
         System.out.println(assessmentCategoryList);
     }
 
     @Test
-    public void beanToJson7() throws Exception {
+    public void beanToJson7(){
         ArrayList<Student> studentList = new ArrayList<>();
         Student student1 = new Student();
         student1.setId("001");
@@ -192,7 +193,7 @@ public class JsonDemo {
     }
 
     @Test
-    public void jsonToBean8() throws Exception {
+    public void jsonToBean8(){
         String jsonStr = "[{\"id\":\"001\",\"user\":{\"addr\":\"河南.驻马店\",\"age\":10,\"cardID\":412822198908101179,\"name\":\"张三\"}},{\"id\":\"002\",\"user\":{\"addr\":\"河南.南阳\",\"age\":12,\"cardID\":412822198908101171,\"name\":\"李四\"}}]";
         List<Student> studentList = (List<Student>) Utils.transformJsonToBeanList(jsonStr, Student.class);
         System.out.println(studentList);
