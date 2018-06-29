@@ -1,0 +1,11 @@
+com\hualala\json\util\DataUtil.class
+com\hualala\json\bean\AssessmentTag.class
+com\hualala\json\test\DataDemo.class
+com\hualala\json\test\JsonDemo.class
+com\hualala\json\bean\User.class
+com\hualala\json\bean\Student.class
+com\hualala\json\util\Utils.class
+com\hualala\json\bean\People.class
+com\hualala\json\bean\AssessmentCategory.class
+com\hualala\json\bean\PrewarningReceiver.class
+com\hualala\ServiceApplication.class
