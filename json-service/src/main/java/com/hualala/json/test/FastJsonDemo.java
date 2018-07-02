@@ -1,6 +1,7 @@
 package com.hualala.json.test;
 
 import com.alibaba.fastjson.JSONObject;
+import com.hualala.json.bean.People;
 import com.hualala.json.bean.User;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -19,6 +20,40 @@ public class FastJsonDemo {
         String jsonString = "{\"addr\":\"河南.驻马店\",\"age\":10,\"cardID\":412822198908101179,\"name\":\"小明\"}";
         User user = JSONObject.parseObject(jsonString, User.class);
         System.out.println(user);//User(name=小明, age=10, cardID=412822198908101179, addr=河南.驻马店)
+    }
+
+    @Test
+    public void getObject(){
+        //json（{"1":{},"2":{}}）-->Bean
+        String jsonString = "{\"user\":{\"addr\":\"河南.驻马店\",\"age\":10,\"cardID\":412822198908101179,\"name\":\"小明\"},\"people\":{\"age\":10,\"name\":\"小明\"}}";
+        JSONObject jsonObject = JSONObject.parseObject(jsonString, JSONObject.class);
+        User user = jsonObject.getObject("user", User.class);
+        System.out.println(user);
+        //User(name=小明, age=10, cardID=412822198908101179, addr=河南.驻马店)
+        People people = jsonObject.getObject("people", People.class);
+        System.out.println(people);
+        //People(name=小明, age=10)
+    }
+
+    @Test
+    public void remove(){
+        //json（{"1":{},"2":{}}）-->Bean
+        String jsonString = "{\"user\":{\"addr\":\"河南.驻马店\",\"age\":10,\"cardID\":412822198908101179,\"name\":\"小明\"},\"people\":{\"age\":10,\"name\":\"小明\"}}";
+        JSONObject jsonObject = JSONObject.parseObject(jsonString, JSONObject.class);
+        Object user = jsonObject.remove("user");
+        System.out.println(user);
+        //{"cardID":412822198908101179,"name":"小明","addr":"河南.驻马店","age":10}
+        System.out.println(jsonObject.toString());
+        //{"people":{"name":"小明","age":10}}
+    }
+
+    @Test
+    public void parseArray(){
+        //json（[{}]）-->List<Bean>
+        String jsonString = "[{\"addr\":\"河南.驻马店\",\"age\":10,\"cardID\":412822198908101179,\"name\":\"小明\"},{\"addr\":\"河南.南阳\",\"age\":11,\"cardID\":412822198908101120,\"name\":\"小军\"}]";
+        List<User> list = JSONObject.parseArray(jsonString, User.class);
+        System.out.println(list);
+        //[User(name=小明, age=10, cardID=412822198908101179, addr=河南.驻马店), User(name=小军, age=11, cardID=412822198908101120, addr=河南.南阳)]
     }
 
     @Test
@@ -55,12 +90,4 @@ public class FastJsonDemo {
         //[{"addr":"河南.驻马店","age":10,"cardID":412822198908101179,"name":"小明"},{"addr":"河南.南阳","age":11,"cardID":412822198908101120,"name":"小军"}]
     }
 
-    @Test
-    public void parseArray(){
-        //json（[{}]）-->List<Bean>
-        String jsonString = "[{\"addr\":\"河南.驻马店\",\"age\":10,\"cardID\":412822198908101179,\"name\":\"小明\"},{\"addr\":\"河南.南阳\",\"age\":11,\"cardID\":412822198908101120,\"name\":\"小军\"}]";
-        List<User> list = JSONObject.parseArray(jsonString, User.class);
-        System.out.println(list);
-        //[User(name=小明, age=10, cardID=412822198908101179, addr=河南.驻马店), User(name=小军, age=11, cardID=412822198908101120, addr=河南.南阳)]
-    }
 }
