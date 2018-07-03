@@ -104,5 +104,12 @@
             <artifactId>lombok</artifactId>
             <version>1.16.18</version>
         </dependency>
+
+        <!-- 拼音转换 -->
+        <dependency>
+            <groupId>com.github.stuxuhai</groupId>
+            <artifactId>jpinyin</artifactId>
+            <version>1.1.7</version>
+        </dependency>
     </dependencies>
 </project>
