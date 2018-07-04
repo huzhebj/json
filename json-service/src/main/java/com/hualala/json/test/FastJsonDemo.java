@@ -47,6 +47,17 @@ public class FastJsonDemo {
     }
 
     @Test
+    public void put(){
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("user1","小明");
+        jsonObject.put("user2","小军");
+        String user1 = jsonObject.getString("user1");
+        System.out.println(user1);//小明
+        String user2 = jsonObject.getString("user2");
+        System.out.println(user2);//小军
+    }
+
+    @Test
     public void remove(){
         //json（{"1":{},"2":{}}）-->Bean
         String jsonString = "{\"user\":{\"addr\":\"河南.驻马店\",\"age\":10,\"cardID\":412822198908101179,\"name\":\"小明\"},\"people\":{\"age\":10,\"name\":\"小明\"}}";
