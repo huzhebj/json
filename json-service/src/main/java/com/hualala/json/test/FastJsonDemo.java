@@ -112,4 +112,15 @@ public class FastJsonDemo {
         //[{"addr":"河南.驻马店","age":10,"cardID":412822198908101179,"name":"小明"},{"addr":"河南.南阳","age":11,"cardID":412822198908101120,"name":"小军"}]
     }
 
+    @Test
+    public void demo(){
+        ArrayList<Integer> list = new ArrayList<>();
+        list.add(1);
+        list.add(2);
+//        list.add(3);
+        System.out.println(list.contains(1));
+        System.out.println(list.contains(2));
+        System.out.println(list.contains(3));
+    }
+
 }
