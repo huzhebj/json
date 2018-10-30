@@ -3,6 +3,7 @@ package com.hualala.json.test;
 import com.alibaba.fastjson.JSONObject;
 import com.hualala.json.bean.People;
 import com.hualala.json.bean.User;
+import org.apache.commons.lang3.StringUtils;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -114,13 +115,23 @@ public class FastJsonDemo {
 
     @Test
     public void demo(){
-        ArrayList<Integer> list = new ArrayList<>();
-        list.add(1);
-        list.add(2);
-//        list.add(3);
-        System.out.println(list.contains(1));
-        System.out.println(list.contains(2));
-        System.out.println(list.contains(3));
+        String params = "{\"demandOrgID\":\"0\",\"cartRecommendQuantity\":\"10\"}";
+        String lonBaiDu = "10.0000000";//地图经度（百度）
+        String latBaiDu = "20.0000000";//地图纬度（百度）
+        JSONObject object = null;
+        if(StringUtils.isBlank(params)){
+            object = new JSONObject();
+        }else{
+            object = JSONObject.parseObject(params);
+        }
+        object.put("lonBaiDu",lonBaiDu);
+        object.put("latBaiDu",latBaiDu);
+        params = JSONObject.toJSONString(object);
+
+
+        System.out.println(params);
+
+
     }
 
 }
