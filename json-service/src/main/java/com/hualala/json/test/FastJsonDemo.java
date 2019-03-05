@@ -1,6 +1,7 @@
 package com.hualala.json.test;
 
 import com.alibaba.fastjson.JSONObject;
+import com.hualala.json.bean.HouseDetail;
 import com.hualala.json.bean.People;
 import com.hualala.json.bean.User;
 import org.apache.commons.lang3.StringUtils;
@@ -115,22 +116,70 @@ public class FastJsonDemo {
 
     @Test
     public void demo(){
-        String params = "{\"demandOrgID\":\"0\",\"cartRecommendQuantity\":\"10\"}";
-        String lonBaiDu = "10.0000000";//地图经度（百度）
-        String latBaiDu = "20.0000000";//地图纬度（百度）
-        JSONObject object = null;
-        if(StringUtils.isBlank(params)){
-            object = new JSONObject();
-        }else{
-            object = JSONObject.parseObject(params);
+        int dateWay = 2; //1:按周 2：按月
+        int dateNo = 3; //日期号
+        String date = "";
+        if(dateWay == 1){
+            switch (dateNo){
+                case 1:
+                    date = "周一";
+                    break;
+                case 2:
+                    date = "周二";
+                    break;
+                case 3:
+                    date = "周三";
+                    break;
+                case 4:
+                    date = "周四";
+                    break;
+            }
+        }else if(dateWay == 2){
+            switch (dateNo){
+                case 1:
+                    date = "1号";
+                    break;
+                case 2:
+                    date = "2号";
+                    break;
+                case 3:
+                    date = "3号";
+                    break;
+                case 4:
+                    date = "4号";
+                    break;
+            }
         }
-        object.put("lonBaiDu",lonBaiDu);
-        object.put("latBaiDu",latBaiDu);
-        params = JSONObject.toJSONString(object);
 
+        System.out.println(date);
 
-        System.out.println(params);
+    }
 
+    @Test
+    public void demo2(){
+        /*JSONObject object = new JSONObject();
+
+        JSONObject data = new JSONObject();
+        data.put("houseID",1589);
+        data.put("houseName","仓库名称");
+
+        object.put("data",data);
+        String jsonString = object.toJSONString();
+        System.out.println(jsonString);*/
+
+        JSONObject object = new JSONObject();
+
+        /*JSONObject data = new JSONObject();
+        data.put("houseID",1589);
+        data.put("houseName","仓库名称");*/
+
+        HouseDetail houseDetail = new HouseDetail();
+        houseDetail.setHouseID(1589L);
+        houseDetail.setHouseName("仓库名称");
+
+        object.put("data",houseDetail);
+        String jsonString = object.toJSONString();
+        System.out.println(jsonString);
 
     }
 
